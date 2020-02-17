@@ -1,4 +1,5 @@
-﻿using System;
+﻿using csharpcore.Utils;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -20,6 +21,30 @@ namespace csharpcore.Services
             => Item.Quality = Item.Name != Constants.SULFURAGES_ITEM
                                 && Item.Quality > 0 ?
                                 Item.Quality - 1 : Item.Quality;
+        #endregion
+
+        #region "UpdateItem"
+        /// <summary>
+        /// The UpdateItem method solves the following scenarios
+        /// 1.a- At the end of each day, our system lowers the quality for each item
+        /// 1.b- At the end of each day, our system lowers the SellIn for each item
+        /// 2- Once the sell by date has passed, Quality degrades twice as fast
+        /// </summary>
+        /// <param name="updateSellIn"></param>
+        public override void UpdateItem(bool updateSellIn = true)
+        {
+            //1.b
+            base.UpdateItem(updateSellIn);
+
+            //1.a
+            DecreaseQuality();
+
+            //2
+            if (Item.SellIn < 0)
+            {
+                DecreaseQuality();
+            }
+        }
         #endregion
     }
 }
