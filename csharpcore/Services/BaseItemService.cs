@@ -20,9 +20,20 @@ namespace csharpcore.Services
                             Item.SellIn - 1 : Item.SellIn;
         #endregion
 
-        public void UpdateItem(bool updateSellIn = true)
+        #region "UpdateItem"
+        /// <summary>
+        /// The UpdateItem method solves the following scenario
+        /// 1- At the end of each day, our system lowers the SellIn for each item
+        /// </summary>
+        /// <param name="updateSellIn"></param>
+        public virtual void UpdateItem(bool updateSellIn = true)
         {
-            throw new NotImplementedException();
+            //1
+            if (updateSellIn)
+            {
+                DecreaseSellin();
+            }
         }
+        #endregion
     }
 }
