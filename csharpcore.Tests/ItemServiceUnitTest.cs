@@ -77,5 +77,36 @@ namespace csharpcore.Tests
             Assert.AreEqual(ItemService.Item.SellIn, -2);
         }
 
+
+        [TestMethod]
+        public virtual void UpdateItemOneDayWithPositifSellIn()
+        {
+
+            // Act
+            ItemService.UpdateItem();
+
+            // Assert 
+            Assert.AreEqual(ItemService.Item.Quality, 19);
+
+            // Assert 
+            Assert.AreEqual(ItemService.Item.SellIn, 9);
+        }
+
+        [TestMethod]
+        public virtual void UpdateItemOneDayWithQuality0()
+        {
+            // Arrange
+            ItemService.Item.Quality = 0;
+
+            // Act
+            ItemService.UpdateItem();
+
+            // Assert 
+            Assert.AreEqual(ItemService.Item.Quality, 0);
+
+            // Assert 
+            Assert.AreEqual(ItemService.Item.SellIn, 9);
+        }
+
     }
 }
