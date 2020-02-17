@@ -24,5 +24,16 @@ namespace csharpcore.Tests
             };
         }
 
+        [TestMethod]
+        public virtual void DecreaseQualityOneDay()
+        {
+            // Act
+            ItemService.DecreaseQuality();
+
+            // Assert 
+            Assert.AreEqual(ItemService.Item.Quality, 80);
+        }
+
+
     }
 }
