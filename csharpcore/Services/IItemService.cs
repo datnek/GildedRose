@@ -4,7 +4,8 @@ using System.Text;
 
 namespace csharpcore.Services
 {
-    class IItemService
+    public interface IItemService : IBaseItemService
     {
+        void DecreaseQuality();
     }
 }
