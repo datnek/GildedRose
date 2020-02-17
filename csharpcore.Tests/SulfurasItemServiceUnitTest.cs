@@ -8,5 +8,21 @@ namespace csharpcore.Tests
     [TestClass]
     public class SulfurasItemServiceUnitTest
     {
+        public virtual ItemService ItemService { get; set; }
+        public SulfurasItemServiceUnitTest()
+        {
+
+            //Arrange 
+            ItemService = new ItemService()
+            {
+                Item = new Item
+                {
+                    Name = Constants.SULFURAGES_ITEM,
+                    SellIn = 10,
+                    Quality = 80
+                }
+            };
+        }
+
     }
 }
