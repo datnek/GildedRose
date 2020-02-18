@@ -48,11 +48,15 @@ namespace csharpcore
 
         public static void Main(string[] args)
         {
+            //setup our DI
+            var serviceProvider = GetServiceCollection().BuildServiceProvider();
+
+            //Get Gilded Rose Service instance
+            var app = serviceProvider.GetService<IGildedRoseService>();
+
+            app.SetItem(GetTestItem());
+
             Console.WriteLine("OMGHAI!");
-
-       
-
-            var app = new GildedRose(Items);
 
 
             for (var i = 0; i < 31; i++)
