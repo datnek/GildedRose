@@ -72,5 +72,18 @@ namespace csharpcore.Services
         }
 
         #endregion
+
+        #region "ShowItems"
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ShowItems()
+        {
+            foreach (var item in Items)
+            {
+                System.Console.WriteLine($"{item.Name}, {item.SellIn}, { item.Quality}");
+            }
+        }
+        #endregion
     }
 }
