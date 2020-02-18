@@ -1,5 +1,7 @@
 ﻿using Xunit;
 using System.Collections.Generic;
+using csharpcore.Models;
+using csharpcore.Services;
 
 namespace csharpcore
 {

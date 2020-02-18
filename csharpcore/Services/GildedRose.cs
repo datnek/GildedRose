@@ -1,4 +1,5 @@
-﻿using csharpcore.Utils;
+﻿using csharpcore.Models;
+using csharpcore.Utils;
 using System.Collections.Generic;
 
 namespace csharpcore.Services
