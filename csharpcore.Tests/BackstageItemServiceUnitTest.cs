@@ -57,5 +57,23 @@ namespace csharpcore.Tests
             Assert.AreEqual(ItemService.Item.SellIn, 9);
         }
 
+        [TestMethod]
+        public void UpdateItemOneDayWithSellIn4AndQuality23()
+        {
+            // Arrange
+            ItemService.Item.SellIn = 5;
+
+
+            // Act
+            ItemService.UpdateItem();
+
+            // Assert 
+            Assert.AreEqual(ItemService.Item.Quality, 23);
+
+            // Assert 
+            Assert.AreEqual(ItemService.Item.SellIn, 4);
+        }
+
+
     }
 }
