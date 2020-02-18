@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace csharpcore.Services
 {
-    public class GildedRose
+    public class GildedRose: IGildedRoseService
     {
         #region "Properties"
         private IList<Item> Items { get; set; }
