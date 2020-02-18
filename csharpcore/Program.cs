@@ -1,5 +1,6 @@
 ﻿using csharpcore.Models;
 using csharpcore.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
@@ -7,11 +8,8 @@ namespace csharpcore
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
-            Console.WriteLine("OMGHAI!");
-
-            IList<Item> Items = new List<Item>{
+        private static IList<Item> GetTestItem()
+            => new List<Item>{
                 new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
                 new Item {Name = "Aged Brie", SellIn = 2, Quality = 0},
                 new Item {Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7},
@@ -39,20 +37,37 @@ namespace csharpcore
 				new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
             };
 
-            var app = new GildedRose(Items);
+        private static IServiceCollection GetServiceCollection() =>
+            new ServiceCollection()
+                .AddSingleton<IItemService, ItemService>()
+                .AddSingleton<IConjuredItemService, ConjuredItemService>()
+                .AddSingleton<IAgedItemService, AgedItemService>()
+                .AddSingleton<IBackstageItemService, BackstageItemService>()
+                .AddSingleton<IGildedRoseService, GildedRose>();
 
+
+        public static void Main(string[] args)
+        {
+            //setup our DI
+            var serviceProvider = GetServiceCollection().BuildServiceProvider();
+
+            //Get Gilded Rose Service instance
+            var app = serviceProvider.GetService<IGildedRoseService>();
+
+            app.SetItem(GetTestItem());
+
+            Console.WriteLine("OMGHAI!");
 
             for (var i = 0; i < 31; i++)
             {
                 Console.WriteLine("-------- day " + i + " --------");
                 Console.WriteLine("name, sellIn, quality");
-                for (var j = 0; j < Items.Count; j++)
-                {
-                    System.Console.WriteLine(Items[j].Name + ", " + Items[j].SellIn + ", " + Items[j].Quality);
-                }
+                app.ShowItems();
                 Console.WriteLine("");
                 app.UpdateQuality();
             }
+
+            serviceProvider.Dispose();
         }
     }
 }
