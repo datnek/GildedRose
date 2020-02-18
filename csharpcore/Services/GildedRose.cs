@@ -12,10 +12,23 @@ namespace csharpcore.Services
         private readonly IConjuredItemService _conjuredItemService;
         #endregion
 
-        public GildedRose(IList<Item> Items)
+        #region "Constructor"
+        public GildedRose(IList<Item> items) // this can not be use
         {
-            this.Items = Items;
+            this.Items = items;
         }
+        public GildedRose(IItemService itemService,
+            IAgedItemService agedItemService,
+            IConjuredItemService conjuredItemService,
+            IBackstageItemService backstageItemService
+            )
+        {
+            this._itemService = itemService;
+            this._agedItemService = agedItemService;
+            this._backstageItemService = backstageItemService;
+            this._conjuredItemService = conjuredItemService;
+        }
+        #endregion
 
         public void UpdateQuality()
         {
