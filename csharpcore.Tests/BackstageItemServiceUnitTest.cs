@@ -75,5 +75,22 @@ namespace csharpcore.Tests
         }
 
 
+        [TestMethod]
+        public override void UpdateItemOneDayWithNegatifSellIn()
+        {
+            // Arrange
+            ItemService.Item.SellIn = -1;
+
+
+            // Act
+            ItemService.UpdateItem();
+
+            // Assert 
+            Assert.AreEqual(ItemService.Item.Quality, 0);
+
+            // Assert 
+            Assert.AreEqual(ItemService.Item.SellIn, -2);
+        }
+
     }
 }
