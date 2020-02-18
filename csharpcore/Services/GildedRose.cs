@@ -30,6 +30,12 @@ namespace csharpcore.Services
         }
         #endregion
 
+        #region "SetItem"
+        public void SetItem(IList<Item> items)
+        {
+            this.Items = items;
+        }
+        #endregion
         public void UpdateQuality()
         {
             for (var i = 0; i < Items.Count; i++)
