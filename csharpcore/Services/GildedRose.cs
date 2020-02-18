@@ -1,10 +1,17 @@
 ﻿using System.Collections.Generic;
 
-namespace csharpcore
+namespace csharpcore.Services
 {
     public class GildedRose
     {
-        IList<Item> Items;
+        #region "Properties"
+        private IList<Item> Items { get; set; }
+        private readonly IItemService _itemService;
+        private readonly IAgedItemService _agedItemService;
+        private readonly IBackstageItemService _backstageItemService;
+        private readonly IConjuredItemService _conjuredItemService;
+        #endregion
+
         public GildedRose(IList<Item> Items)
         {
             this.Items = Items;
