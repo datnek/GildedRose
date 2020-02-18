@@ -40,5 +40,18 @@ namespace csharpcore.Tests
             Assert.AreEqual(ItemService.Item.SellIn, -2);
         }
 
+        [TestMethod]
+        public override void UpdateItemOneDayWithPositifSellIn()
+        {
+
+            // Act
+            ItemService.UpdateItem();
+
+            // Assert 
+            Assert.AreEqual(ItemService.Item.Quality, 18);
+
+            // Assert 
+            Assert.AreEqual(ItemService.Item.SellIn, 9);
+        }
     }
 }
