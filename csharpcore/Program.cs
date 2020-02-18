@@ -1,5 +1,6 @@
 ﻿using csharpcore.Models;
 using csharpcore.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
@@ -35,6 +36,15 @@ namespace csharpcore
 				// this conjured item does not work properly yet
 				new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
             };
+
+        private static IServiceCollection GetServiceCollection() =>
+            new ServiceCollection()
+                .AddSingleton<IItemService, ItemService>()
+                .AddSingleton<IConjuredItemService, ConjuredItemService>()
+                .AddSingleton<IAgedItemService, AgedItemService>()
+                .AddSingleton<IBackstageItemService, BackstageItemService>()
+                .AddSingleton<IGildedRoseService, GildedRose>();
+
 
         public static void Main(string[] args)
         {
