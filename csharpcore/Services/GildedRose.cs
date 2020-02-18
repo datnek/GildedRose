@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using csharpcore.Utils;
+using System.Collections.Generic;
 
 namespace csharpcore.Services
 {
@@ -36,90 +37,40 @@ namespace csharpcore.Services
             this.Items = items;
         }
         #endregion
+
+        #region "UpdateQuality"
+
+        /// <summary>
+        /// This method resolve 
+        /// </summary>
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+
+            foreach (var item in Items)
             {
-                if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+
+                switch (item.Name)
                 {
-                    if (Items[i].Quality > 0)
-                    {
-                        if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                        {
-                            Items[i].Quality = Items[i].Quality - 1;
-
-                            if (Items[i].Name == "Conjured Mana Cake" && Items[i].Quality > 0)
-                            {
-                                Items[i].Quality -= 1;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (Items[i].Quality < 50)
-                    {
-                        Items[i].Quality = Items[i].Quality + 1;
-
-                        if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (Items[i].SellIn < 11)
-                            {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
-                            }
-
-                            if (Items[i].SellIn < 6)
-                            {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                {
-                    Items[i].SellIn = Items[i].SellIn - 1;
-                }
-
-                if (Items[i].SellIn < 0)
-                {
-                    if (Items[i].Name != "Aged Brie")
-                    {
-                        if (Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (Items[i].Quality > 0)
-                            {
-                                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                                {
-                                    Items[i].Quality = Items[i].Quality - 1;
-                                    //here
-                                    if (Items[i].Name == "Conjured Mana Cake" && Items[i].Quality > 0)
-                                    {
-                                        Items[i].Quality -= 1;
-                                    }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Items[i].Quality = Items[i].Quality - Items[i].Quality;
-                        }
-                    }
-                    else
-                    {
-                        if (Items[i].Quality < 50)
-                        {
-                            Items[i].Quality = Items[i].Quality + 1;
-                        }
-                    }
+                    case Constants.AGED_ITEM:
+                        this._agedItemService.Item = item;
+                        _agedItemService.UpdateItem();
+                        break;
+                    case Constants.BACKSTAGE_ITEM:
+                        this._backstageItemService.Item = item;
+                        _backstageItemService.UpdateItem();
+                        break;
+                    case Constants.CONJURED_ITEM:
+                        this._conjuredItemService.Item = item;
+                        _conjuredItemService.UpdateItem();
+                        break;
+                    default:
+                        this._itemService.Item = item;
+                        this._itemService.UpdateItem();
+                        break;
                 }
             }
         }
+
+        #endregion
     }
 }
