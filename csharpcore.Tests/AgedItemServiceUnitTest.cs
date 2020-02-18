@@ -37,5 +37,16 @@ namespace csharpcore.Tests
             Assert.AreEqual(ItemService.Item.Quality, 50);
         }
 
+        [TestMethod]
+        public virtual void IncreaseQualityOneDayForQuality20Item()
+        {
+            // Act
+            ItemService.IncreaseQuality();
+
+            // Assert 
+            Assert.AreEqual(ItemService.Item.Quality, 21);
+        }
+
+
     }
 }
