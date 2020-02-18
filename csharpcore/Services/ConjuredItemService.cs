@@ -4,7 +4,8 @@ using System.Text;
 
 namespace csharpcore.Services
 {
-    class ConjuredItemService : ItemService, IConjuredItemService
+    public class ConjuredItemService : ItemService, IConjuredItemService
     {
+
     }
 }
