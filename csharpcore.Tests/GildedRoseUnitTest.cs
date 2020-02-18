@@ -8,20 +8,33 @@ using System.Text;
 using System;
 using System.IO;
 using ApprovalTests;
+using Moq;
 
 namespace csharpcore.Tests
 {
 
     [UseReporter(typeof(DiffReporter))]
     [TestClass]
-    public class GildedRoseTest
+    public class GildedRoseUnitTest
     {
+
+        public virtual IGildedRoseService GildedRoseService { get; set; }
+
+        public GildedRoseUnitTest()
+        {
+            GildedRoseService = new GildedRose(new Mock<IItemService>().Object,
+                                    new Mock<IAgedItemService>().Object,
+                                    new Mock<IConjuredItemService>().Object,
+                                    new Mock<IBackstageItemService>().Object
+                                    );
+        }
+
         [TestMethod]
         public void foo()
         {
             IList<Item> Items = new List<Item> { new Item { Name = "foo", SellIn = 0, Quality = 0 } };
-            GildedRose app = new GildedRose(Items);
-            app.UpdateQuality();
+            GildedRoseService.SetItem(Items);
+            GildedRoseService.UpdateQuality();
             Assert.AreNotEqual("fixme", Items[0].Name);
         }
 
