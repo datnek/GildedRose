@@ -7,11 +7,8 @@ namespace csharpcore
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
-            Console.WriteLine("OMGHAI!");
-
-            IList<Item> Items = new List<Item>{
+        private static IList<Item> GetTestItem()
+            => new List<Item>{
                 new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
                 new Item {Name = "Aged Brie", SellIn = 2, Quality = 0},
                 new Item {Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7},
@@ -38,6 +35,12 @@ namespace csharpcore
 				// this conjured item does not work properly yet
 				new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
             };
+
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("OMGHAI!");
+
+       
 
             var app = new GildedRose(Items);
 
