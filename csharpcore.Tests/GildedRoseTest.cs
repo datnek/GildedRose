@@ -1,9 +1,9 @@
 ﻿using Xunit;
 using System.Collections.Generic;
-using csharpcore.Models;
 using csharpcore.Services;
+using csharpcore.Models;
 
-namespace csharpcore
+namespace csharpcore.Tests
 {
     public class GildedRoseTest
     {
