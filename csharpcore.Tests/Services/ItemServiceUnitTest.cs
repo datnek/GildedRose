@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace csharpcore.Tests
+namespace csharpcore.Tests.Services
 {
     [TestClass]
     public class ItemServiceUnitTest
