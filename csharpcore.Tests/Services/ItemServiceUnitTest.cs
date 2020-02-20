@@ -1,53 +1,66 @@
 ﻿using csharpcore.Models;
 using csharpcore.Services;
-using csharpcore.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace csharpcore.Tests
+namespace csharpcore.Tests.Services
 {
     [TestClass]
-    public class AgedItemServiceUnitTest
+    public class ItemServiceUnitTest
     {
-        public virtual IAgedItemService ItemService { get; set; }
-        public AgedItemServiceUnitTest()
+        public virtual ItemService ItemService { get; set; }
+        public ItemServiceUnitTest()
         {
-            // Arrange
-            this.ItemService = new AgedItemService()
+
+            //Arrange 
+            ItemService = new ItemService()
             {
                 Item = new Item
                 {
-                    Name = Constants.AGED_ITEM,
+                    Name = "Foo",
                     SellIn = 10,
                     Quality = 20
                 }
             };
         }
 
+
         [TestMethod]
-        public virtual void IncreaseQualityOneDayForQuality50Item()
+        public virtual void DecreaseQualityOneDayForDefaultItem()
+        {
+            // Act
+            ItemService.DecreaseQuality();
+
+            // Assert 
+            Assert.AreEqual(ItemService.Item.Quality, 19);
+        }
+
+        [TestMethod]
+        public virtual void DecreaseQualityOneDayWithQuality0()
         {
             // Arrange
-            ItemService.Item.Quality = 50;
+            ItemService.Item.Quality = 0;
 
             // Act
-            ItemService.IncreaseQuality();
+            ItemService.DecreaseQuality();
 
             // Assert 
-            Assert.AreEqual(ItemService.Item.Quality, 50);
+            Assert.AreEqual(ItemService.Item.Quality, 0);
         }
+
 
         [TestMethod]
-        public virtual void IncreaseQualityOneDayForQuality20Item()
+        public virtual void DecreaseSellinOneDay()
         {
             // Act
-            ItemService.IncreaseQuality();
+            ItemService.DecreaseSellin();
 
             // Assert 
-            Assert.AreEqual(ItemService.Item.Quality, 21);
+            Assert.AreEqual(ItemService.Item.SellIn, 9);
         }
+
 
         [TestMethod]
         public virtual void UpdateItemOneDayWithNegatifSellIn()
@@ -60,11 +73,12 @@ namespace csharpcore.Tests
             ItemService.UpdateItem();
 
             // Assert 
-            Assert.AreEqual(ItemService.Item.Quality, 22);
+            Assert.AreEqual(ItemService.Item.Quality, 18);
 
             // Assert 
             Assert.AreEqual(ItemService.Item.SellIn, -2);
         }
+
 
         [TestMethod]
         public virtual void UpdateItemOneDayWithPositifSellIn()
@@ -74,23 +88,23 @@ namespace csharpcore.Tests
             ItemService.UpdateItem();
 
             // Assert 
-            Assert.AreEqual(ItemService.Item.Quality, 21);
+            Assert.AreEqual(ItemService.Item.Quality, 19);
 
             // Assert 
             Assert.AreEqual(ItemService.Item.SellIn, 9);
         }
 
         [TestMethod]
-        public void UpdateItemOneDayWithQuality50()
+        public virtual void UpdateItemOneDayWithQuality0()
         {
             // Arrange
-            ItemService.Item.Quality = 50;
+            ItemService.Item.Quality = 0;
 
             // Act
             ItemService.UpdateItem();
 
             // Assert 
-            Assert.AreEqual(ItemService.Item.Quality, 50);
+            Assert.AreEqual(ItemService.Item.Quality, 0);
 
             // Assert 
             Assert.AreEqual(ItemService.Item.SellIn, 9);

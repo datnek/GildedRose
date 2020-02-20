@@ -10,7 +10,7 @@ using System.IO;
 using ApprovalTests;
 using Moq;
 
-namespace csharpcore.Tests
+namespace csharpcore.Tests.Services
 {
 
     [UseReporter(typeof(DiffReporter))]
