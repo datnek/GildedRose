@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="GildedRoseUnitTest.ThirtyDays.approved.txt">
+    <None Update="Services\GildedRoseUnitTest.ThirtyDays.approved.txt">
       <DependentUpon>GildedRoseUnitTest.cs</DependentUpon>
     </None>
   </ItemGroup>
