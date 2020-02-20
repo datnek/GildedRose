@@ -45,6 +45,6 @@ You can see the tasks related to development via this link
 # Achitecture
 Here is an abstract architecture of the project
 
-![Wemanity-test-achitecture.jpg](/.attachments/Wemanity-test-achitecture-5af33d7c-ad63-4aa6-98f9-0a7ccb6bae88.jpg)
-
-
+<img src = "Wemanity-test-achitecture.jpg" 
+     alt = "Achitecture" 
+     style = "width:100%;" />
