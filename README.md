@@ -1,6 +1,5 @@
 ﻿# Presentation
-Gilded Rose is a product management 
-application for a restaurant developed in C #
+Gilded Rose is a product management application for a restaurant developed in C #
 
 # Integration
 To compile and run the application,
@@ -33,6 +32,8 @@ You can see the tasks related to development via this link
 ### https://dev.azure.com/WemanityTest/GildedRose/_boards/board/t/GildedRose%20Team/Features
 
 ## Structure:
+	
+~~~~
 - Dependencies: which contains the dependencies or libraries for the good functioning of the project
 - Services: Contains the operations necessary for solving the problem
 - Models: Contain the Item
@@ -41,10 +42,52 @@ You can see the tasks related to development via this link
 - .gitignore: private file to git
 - program.cs: Contain the main function
 - README.md: Contain instructions 
+~~~~
 
 # Achitecture
 Here is an abstract architecture of the project
 
-<img src = "Wemanity-test-achitecture.jpg" 
-     alt = "Achitecture" 
-     style = "width:100%;" />
+
+![Wemanity-test-achitecture.jpg](/.attachments/Wemanity-test-achitecture-53685420-1df1-4603-9069-a3e31cfa0cb0.jpg)
+
+
+#Features model
+*To show the link with dev, just click to item*
+
+#4
+- #65
+- #69
+- #70
+- #71
+- #72
+- #74
+
+#1
+- #66
+- #67
+- #68
+
+#3
+- #10
+- #23
+- #43
+- #50
+- #60
+
+#2
+- #8
+- #9
+- #11
+- #20
+- #26
+- #40
+- #41
+- #47
+- #48
+- #54
+- #55
+- #73
+
+#Continious Intégration  result
+
+https://dev.azure.com/WemanityTest/GildedRose/_build/results?buildId=30&view=logs&j=12f1170f-54f2-53f3-20dd-22fc7dff55f9

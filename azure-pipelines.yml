@@ -1,0 +1,66 @@
+# Console Core
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+variables:
+  buildConfiguration: 'Release'
+steps:
+
+- task: UseDotNet@2
+  displayName: 'Use .NET Core sdk 3.1.101'
+  inputs:
+    packageType: sdk
+    version: 3.1.101
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    feedsToUse: 'select'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: build
+    projects: '**/*.csproj'
+    arguments: '--configuration Release'  
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"' 
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: Refit.Tests/Refit.Tests.csproj
+    arguments: -c $(BuildConfiguration) --settings $(System.DefaultWorkingDirectory)/CodeCoverage.runsettings --collect:"XPlat Code Coverage" -- RunConfiguration.DisableAppDomain=true
+  displayName: Run Tests
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: custom
+    custom: tool
+    arguments: install --tool-path . dotnet-reportgenerator-globaltool
+  displayName: Install ReportGenerator tool
+  
+  
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: $(Build.SourcesDirectory)/coverlet/reports/Cobertura.xml  
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'wemanity-artifact-dev-api'
+
+
