@@ -8,8 +8,9 @@ namespace csharpcore
 {
     public class Program
     {
+        #region "GetTestItems"
         private static IList<Item> GetTestItem()
-            => new List<Item>{
+           => new List<Item>{
                 new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
                 new Item {Name = "Aged Brie", SellIn = 2, Quality = 0},
                 new Item {Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7},
@@ -35,17 +36,20 @@ namespace csharpcore
                 },
 				// this conjured item does not work properly yet
 				new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
-            };
+           };
+        #endregion
 
+        #region "GetServiceCollection"
         private static IServiceCollection GetServiceCollection() =>
-            new ServiceCollection()
-                .AddSingleton<IItemService, ItemService>()
-                .AddSingleton<IConjuredItemService, ConjuredItemService>()
-                .AddSingleton<IAgedItemService, AgedItemService>()
-                .AddSingleton<IBackstageItemService, BackstageItemService>()
-                .AddSingleton<IGildedRoseService, GildedRose>();
+          new ServiceCollection()
+              .AddSingleton<IItemService, ItemService>()
+              .AddSingleton<IConjuredItemService, ConjuredItemService>()
+              .AddSingleton<IAgedItemService, AgedItemService>()
+              .AddSingleton<IBackstageItemService, BackstageItemService>()
+              .AddSingleton<IGildedRoseService, GildedRose>();
+        #endregion
 
-
+        #region "Main function "
         public static void Main(string[] args)
         {
             //setup our DI
@@ -69,5 +73,6 @@ namespace csharpcore
 
             serviceProvider.Dispose();
         }
+        #endregion
     }
 }
