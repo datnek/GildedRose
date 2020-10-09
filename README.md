@@ -91,40 +91,7 @@ Here is an abstract architecture of the project
 
 #Features model
 *To show the link with dev, just click to item*
-
-#4
-- #65
-- #69
-- #70
-- #71
-- #72
-- #74
-
-#1
-- #66
-- #67
-- #68
-
-#3
-- #10
-- #23
-- #43
-- #50
-- #60
-
-#2
-- #8
-- #9
-- #11
-- #20
-- #26
-- #40
-- #41
-- #47
-- #48
-- #54
-- #55
-- #73
+https://dev.azure.com/WemanityTest/GildedRose/_wiki/wikis/GildedRose.wiki/1/Readme
 
 #Continious Intégration  result
 
