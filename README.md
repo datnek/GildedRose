@@ -43,7 +43,7 @@ legendary item and as such its Quality is 80 and it never alters.
 To compile and run the application,
 - Cloner the projet, use command
  ```diff
-+  "git clone https://WemanityTest@dev.azure.com/WemanityTest/GildedRose/_git/GildedRose" 
++  "git clone https://github.com/datnek/GildedRose.git" 
 ``` 
 - open console
 - Place yourself at the root of the project
